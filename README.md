@@ -1,6 +1,8 @@
 
 # AyurChatbot API
 
+## Documentation - https://documenter.getpostman.com/view/30145336/2sAXjJ7Dhs
+
 
 ## Overview
 The AyurChatbot API is a Flask-based service designed to provide responses related to Ayurveda and healthcare based on Ayurvedic principles. This API uses the Groq client to generate responses and supports two main endpoints: /generate_response and /general-chat. Both endpoints require a specific authentication message in the request body to verify access.
