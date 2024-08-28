@@ -74,7 +74,7 @@ def generate_response():
 def home():
     return 'Hi Buddy 🫡, I guess You have to see Documentation (Ask the owner).'
 
-@app.route('/general-chat', methods=['POST'])
+@app.route('/general_chat', methods=['POST'])
 def general_chat():
     # Get the authentication message and user message from the request
     provided_auth_message = request.json.get('auth_message')
