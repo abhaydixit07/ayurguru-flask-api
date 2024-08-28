@@ -9,15 +9,28 @@ app = Flask(__name__)
 groq_api_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=groq_api_key)
 
+# Load the expected authentication message from environment variables
+expected_auth_message = os.getenv("AUTH_MESSAGE")
+
+def authenticate_request(provided_auth_message):
+    """Authenticate the request by comparing the provided auth message with the expected one."""
+    return provided_auth_message == expected_auth_message
+
 @app.route('/generate_response', methods=['POST'])
 def generate_response():
-
+    # Get the authentication message and user message from the request
+    provided_auth_message = request.json.get('auth_message')
     user_message = request.json.get('message')
 
-    if not user_message:
-        return jsonify({"error": "No message provided"}), 400
+    # Check if authentication message or user message is missing
+    if not provided_auth_message or not user_message:
+        return jsonify({"error": "Authentication message or user message not provided"}), 400
 
+    # Authenticate the request using the authentication message
+    if not authenticate_request(provided_auth_message):
+        return jsonify({"error": "Unauthorized access"}), 401
 
+    # Generate response using the Groq client
     completion = client.chat.completions.create(
         model="gemma2-9b-it",
         messages=[
@@ -52,8 +65,6 @@ def generate_response():
     )
 
     response_text = ""
-
-
     for chunk in completion:
         response_text += chunk.choices[0].delta.content or ""
 
@@ -63,14 +74,19 @@ def generate_response():
 def home():
     return 'Hi Buddy 🫡, I guess You have to see Documentation (Ask the owner).'
 
-
 @app.route('/general-chat', methods=['POST'])
 def general_chat():
-    # Get the user message from the request
+    # Get the authentication message and user message from the request
+    provided_auth_message = request.json.get('auth_message')
     user_message = request.json.get('message')
 
-    if not user_message:
-        return jsonify({"error": "No message provided"}), 400
+    # Check if authentication message or user message is missing
+    if not provided_auth_message or not user_message:
+        return jsonify({"error": "Authentication message or user message not provided"}), 400
+
+    # Authenticate the request using the authentication message
+    if not authenticate_request(provided_auth_message):
+        return jsonify({"error": "Unauthorized access"}), 401
 
     # Create the chat completion
     completion = client.chat.completions.create(
@@ -89,7 +105,6 @@ def general_chat():
     )
 
     response_text = ""
-
     # Iterate through the stream to get the complete response
     for chunk in completion:
         response_text += chunk.choices[0].delta.content or ""
