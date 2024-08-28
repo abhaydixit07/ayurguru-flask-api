@@ -61,7 +61,7 @@ def generate_response():
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    return 'Hi Buddy 🫡, I guess You have to see Documentation (Ask the owner).'
 
 
 @app.route('/general-chat', methods=['POST'])
