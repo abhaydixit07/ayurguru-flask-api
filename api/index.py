@@ -1,15 +1,17 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from groq import Groq
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 groq_api_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=groq_api_key)
 
-# Load the expected authentication message from environment variables
+
 expected_auth_message = os.getenv("AUTH_MESSAGE")
 
 def authenticate_request(provided_auth_message):
@@ -18,7 +20,7 @@ def authenticate_request(provided_auth_message):
 
 @app.route('/generate_response', methods=['POST'])
 def generate_response():
-    # Get the authentication message and user message from the request
+   
     provided_auth_message = request.json.get('auth_message')
     user_message = request.json.get('message')
 
