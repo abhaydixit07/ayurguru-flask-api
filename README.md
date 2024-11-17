@@ -1,5 +1,5 @@
 
-# AyurChatbot API
+# AyurGuru Chatbot API
 
 ## Documentation - https://documenter.getpostman.com/view/30145336/2sAXjJ7Dhs
 
