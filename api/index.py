@@ -18,14 +18,14 @@ def authenticate_request(provided_auth_message):
     """Authenticate the request by comparing the provided auth message with the expected one."""
     return provided_auth_message == expected_auth_message
 
-def clean_response_text(text):
+# def clean_response_text(text):
 
-    cleaned_text = text.replace("*", "").replace("•", "")
+#     cleaned_text = text.replace("*", "").replace("•", "")
 
 
-    cleaned_text = "\n".join([line.strip() for line in cleaned_text.splitlines() if line.strip()])
+#     cleaned_text = "\n".join([line.strip() for line in cleaned_text.splitlines() if line.strip()])
 
-    return cleaned_text
+#     return cleaned_text
 
 @app.route('/generate_response', methods=['POST'])
 def generate_response():
@@ -88,12 +88,12 @@ def generate_response():
     for chunk in completion:
         response_text += chunk.choices[0].delta.content or ""
 
-    cleaned_response = clean_response_text(response_text)
+    # cleaned_response = clean_response_text(response_text)
 
 
 
     return jsonify({
-        "response": cleaned_response
+        "response": response_text
     })
 
 
@@ -171,9 +171,9 @@ def generate_response_with_context():
     for chunk in completion:
         response_text += chunk.choices[0].delta.content or ""
 
-    cleaned_response = clean_response_text(response_text)
+    # cleaned_response = clean_response_text(response_text)
 
-    return jsonify({"response": cleaned_response})
+    return jsonify({"response": response_text})
 
 
 @app.route('/general_chat', methods=['POST'])
