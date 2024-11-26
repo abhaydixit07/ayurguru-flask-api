@@ -12,6 +12,24 @@ Welcome to the **AyurGuru Flask API**, a powerful service designed to provide in
 
 ---
 
+## API Documentation
+
+For detailed API documentation, including all available endpoints, parameters, and example responses, please visit:  
+[**Postman Documentation**](https://documenter.getpostman.com/view/30145336/2sAXjJ7Dhs)
+
+---
+
+## Tech Stack
+
+- **Python**: Backend language powering the API.  
+- **Flask**: Web framework for creating robust and scalable APIs.  
+- **Groq Cloud**: AI-powered conversational model integration.  
+- **Llama 3.1**: Advanced AI model for enhanced natural language understanding.  
+- **dotenv**: Environment variable management.  
+- **CORS**: Cross-Origin Resource Sharing support for secure integration.
+
+---
+
 ## API Endpoints
 
 ### 1. **Chat with AyurChatbot**
@@ -97,31 +115,37 @@ A general-purpose endpoint for conversational AI beyond Ayurveda-specific topics
 
 ---
 
-## Usage Examples
+## Installation and Local Deployment
 
-### Node.js Integration
-```javascript
-const axios = require('axios');
+### Prerequisites
+- Python installed on your system.
 
-const data = JSON.stringify({
-  message: "Can Ayurveda help with managing stress?",
-  auth_message: "AUTH_MESSAGE"
-});
+### Steps to Run Locally
 
-axios.post('https://ayurguru-flask-api.vercel.app/generate_response', data, {
-  headers: {
-    'Content-Type': 'application/json',
-  }
-})
-.then(response => console.log(response.data))
-.catch(error => console.error(error));
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/abhaydixit07/ayurguru-flask-api.git
+   cd ayurguru-flask-api
+   ```
 
----
+2. Create a `.env` file in the root directory and add the following environment variables:
+   ```env
+   GROQ_API_KEY=<Your Groq API Key>
+   AUTH_MESSAGE=<Your Authentication Message>
+   ```
+   Replace `<Your Groq API Key>` and `<Your Authentication Message>` with your actual credentials.
 
-## Deployment
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-The AyurGuru Flask API is deployed on **Vercel** for fast and reliable access. Ensure your requests include the required `auth_message` to authenticate and access the endpoints.
+4. Start the server:
+   ```bash
+   python api/index.py
+   ```
+
+5. Your server will now be running locally on `http://127.0.0.1:5000`. You can test the endpoints using tools like Postman or cURL.
 
 ---
 
@@ -132,7 +156,6 @@ The AyurGuru Flask API is deployed on **Vercel** for fast and reliable access. E
 3. **General AI Assistant**: Leverage `/general_chat` for answering a broad range of questions.
 
 ---
-
 
 ## Contribution Guidelines
 
@@ -147,7 +170,6 @@ We welcome contributions! Here's how you can get involved:
 ## License
 
 This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it in accordance with the license terms.
-
 
 ---
 
