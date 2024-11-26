@@ -125,12 +125,6 @@ The AyurGuru Flask API is deployed on **Vercel** for fast and reliable access. E
 
 ---
 
-## Authentication
-
-All endpoints require an `auth_message` key in the request body for authentication. Replace `AUTH_MESSAGE` with the appropriate authentication string provided during setup.
-
----
-
 ## Example Scenarios
 
 1. **Healthcare Chatbot**: Integrate the `/generate_response` endpoint to build a chatbot focused on Ayurvedic healthcare advice.
@@ -139,14 +133,6 @@ All endpoints require an `auth_message` key in the request body for authenticati
 
 ---
 
-## Response Codes
-
-- **200 OK**: Request was successful, and the response is returned.
-- **400 Bad Request**: Invalid input or missing parameters in the request body.
-- **401 Unauthorized**: Authentication failed; check your `auth_message`.
-- **500 Internal Server Error**: Server encountered an issue; try again later.
-
----
 
 ## Contribution Guidelines
 
@@ -162,11 +148,6 @@ We welcome contributions! Here's how you can get involved:
 
 This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it in accordance with the license terms.
 
----
-
-## Support
-
-For any questions, issues, or feature requests, please open an issue on GitHub or contact us directly at **support@ayurguru.com**.
 
 ---
 
